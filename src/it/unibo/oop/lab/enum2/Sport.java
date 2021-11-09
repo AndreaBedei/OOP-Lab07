@@ -2,6 +2,7 @@
  * 
  */
 package it.unibo.oop.lab.enum2;
+import it.unibo.oop.lab.enum2.Place;
 
 /**
  * Represents an enumeration for declaring sports.
@@ -17,6 +18,13 @@ package it.unibo.oop.lab.enum2;
  */
 public enum Sport {
 
+	BASKET(Place.INDOOR, 10, "BASKET"), 
+	VOLLEY(Place.INDOOR, 5, "VOLLEY"),
+	TENNIS(Place.OUTDOOR, 1, "TENNIS"),
+	BIKE(Place.OUTDOOR, 1, "BIKE"),
+	F1(Place.OUTDOOR, 1, "F1"), 
+	MOTOGP(Place.OUTDOOR, 1, "MOTOGP"), 
+	SOCCER(Place.OUTDOOR, 11, "SOCCER");
     /*
      * TODO
      * 
@@ -45,7 +53,10 @@ public enum Sport {
      * 
      * Declare required fields
      */
-
+	private final Place place;
+	private final int noTeamMembers;
+	private final String actualName;
+	
     /*
      * TODO
      * 
@@ -55,6 +66,11 @@ public enum Sport {
      * 
      * - Sport(final Place place, final int noTeamMembers, final String actualName)
      */
+	Sport(final Place place, final int noTeamMembers, final String actualName) {
+		this.place = place;
+		this.noTeamMembers = noTeamMembers; 
+		this.actualName = actualName;
+	}
 
     /*
      * TODO
@@ -81,4 +97,20 @@ public enum Sport {
      * 
      * Returns the string representation of a sport
      */
+	public boolean isIndividualSport() {
+		return noTeamMembers==1;
+	}
+	
+	public boolean isIndoorSport() {
+		return place==Place.INDOOR;
+	}
+	
+	public Place getPlace() {
+		return place;
+	}
+
+	public String toString() {
+		return (actualName + " is a " + place + "it is play by " + noTeamMembers);
+	}
+	
 }
